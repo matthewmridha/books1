@@ -1,0 +1,250 @@
+body {
+    background-image: url("https://c.pxhere.com/photos/ed/91/book_page_bookstore_bookshelf-503957.jpg!d");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.container-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 97%;
+    width: 100vw;
+    margin: 0px;
+    border: 0px;
+    min-height: 100vh;
+}
+
+.wrapper-main,
+.wrapper-log {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    background-color: rgba(241, 236, 236, 0.8);
+}
+
+.wrapper-log {
+    padding: 50px;
+    border: 0.05px solid grey;
+    border-radius: 5px;
+    box-shadow: 0px 10px 20px 1px grey;
+    width: 50%;
+    height: auto;
+}
+
+.wrapper-main {
+    width: 100vw;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    padding: 50px;
+    padding-top: 100px;
+    min-height: 100vh;
+}
+
+.btn {
+    box-shadow: 0px 1px 5px 1px grey;
+}
+
+.btn-search {
+    margin: 5px;
+}
+
+@media (max-width: 950px) {
+    .wrapper-log {
+        height: auto;
+        width: 100vw;
+    }
+    .wrapper-main {
+        flex-direction: column;
+    }
+}
+
+hr {
+    display: block;
+    width: 100%;
+}
+
+.errorWrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://c.pxhere.com/images/0c/2f/fae05cc5fff7d36ba1aa6690b0fc-1430893.jpg!d");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+input {
+    box-shadow: 0px 2px 2px 1px grey inset;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-self: start;
+    position: absolute;
+    box-shadow: 0px 2px 10px 1px;
+}
+
+.navbar-brand {
+    font-family: "Quintessential", cursive;
+    font-size: 32px;
+}
+
+.detail {
+    font-family: "Italianno", cursive;
+}
+
+.table {
+    margin-top: 50px;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    background-image: url("https://c.pxhere.com/images/0c/2f/fae05cc5fff7d36ba1aa6690b0fc-1430893.jpg!d");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+td {
+    cursor: pointer;
+    font-family: "Italianno", cursive;
+    font-size: 28px;
+}
+
+#results {
+    box-shadow: 0px 2px 5px 1px grey;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    font-family: raleway, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("https://c.pxhere.com/images/0c/2f/fae05cc5fff7d36ba1aa6690b0fc-1430893.jpg!d");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px;
+}
+
+@media (max-width: 800px) {
+    .flex-container {
+        flex-direction: column;
+        width: 100vw;
+        margin: 0px;
+        border: 0px;
+        padding: 0px;
+    }
+}
+
+.book {
+    min-width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    line-height: 50px;
+    font-size: 22px;
+    flex-direction: column;
+}
+
+#reviews {
+    height: 200px;
+    width: 100%;
+    overflow-x: scroll;
+    padding: 10px;
+}
+
+.rate {
+    min-width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#review {
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+.rating {
+    float: left;
+    margin-left: 20px;
+}
+
+.rating:not(:checked)>input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.rating:not(:checked)>label {
+    float: right;
+    width: 1em;
+    padding: 0 .1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 200%;
+    line-height: 1.2;
+    color: #ddd;
+    text-shadow: 1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.rating:not(:checked)>label:before {
+    content: '★ ';
+}
+
+.rating>input:checked~label {
+    color: #f70;
+    text-shadow: 1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+    color: gold;
+    text-shadow: 1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.rating>input:checked+label:hover,
+.rating>input:checked+label:hover~label,
+.rating>input:checked~label:hover,
+.rating>input:checked~label:hover~label,
+.rating>label:hover~input:checked~label {
+    color: #ea0;
+    text-shadow: 1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.rating>label:active {
+    position: relative;
+    top: 2px;
+    left: 2px;
+}

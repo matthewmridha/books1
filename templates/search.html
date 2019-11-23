@@ -1,0 +1,95 @@
+{% extends "template.html" %} {% block title %} home {% endblock %} {% block main %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span></button>
+    <a class="navbar-brand" href="{{url_for('index')}}">Books</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('search')}}">Search <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('book')}}">Book</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="/logout">
+            <button class="btn btn-info my-2 my-sm-0 logout" type="submit"><i class="fas fa-sign-out-alt"></i>Logout</button>
+        </form>
+    </div>
+</nav>
+<div class="container-main">
+    <div class="wrapper-main row">
+        <div class="detail col-lg-3 col-md-6">
+            <h1>Look up book by: &nbsp</h1>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <form action="/search_isbn" method="POST">
+                <div class="form-inline">
+                    <input required type="search" class="form-control" id="isbn" name="isbn" placeholder="ISBN">
+                    <button type="submit" class="btn btn-info btn-search"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <form action="/search_author" method="POST">
+                <div class="form-inline">
+                    <input required type="search" class="form-control" id="search_author" name="author" placeholder="Author">
+                    <button type="submit" class="btn btn-info btn-search"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <form action="/search_title" method="POST">
+                <div class="form-inline">
+                    <input required type="search" class="form-control" id="search_title" name="title" Placeholder="Title">
+                    <button type="submit" class="btn btn-info btn-search"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+        {% if show_results %}
+        <div class="table-responsive">
+
+            <table class="table table-responsive table-striped table-hover" id="results">
+                <caption class="sr-only">returned search results</caption>
+                <tr>
+                    <th class="col">isbn</th>
+                    <th class="col">Title</th>
+                    <th class="col">Author</th>
+                    <th class="col">Published</th>
+                </tr>
+                {% for book in books %}
+                <tr data-set="{{ book.isbn }}" onclick="submitForm(this)">
+                    <td>{{ book.isbn }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.year }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+    {% endif %}
+    <form action="/book" id="selectBook" name="selectBook" method="POST">
+        <input type="hidden" name="selectedBook" id="selectedBook" value="">
+
+    </form>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        submitForm = (row) => {
+            let myForm = document.getElementById("selectBook");
+            let isbn = row.getAttribute("data-set").toString();
+            document.getElementById("selectedBook").value = isbn;
+            myForm.submit()
+
+        }
+
+    });
+</script>
+
+{% endblock %}

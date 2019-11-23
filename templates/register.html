@@ -1,0 +1,69 @@
+{% extends "template.html" %} {% block title %} register {% endblock %} {% block main %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="box-shadow: 0px 2px 2px 2px grey">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span></button>
+    <a class="navbar-brand" href="/">Books</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="/search">Search</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/book">Book</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="/login">
+            <button class="btn btn-info my-2 my-sm-0 logout" type="submit"><i class="fas fa-sign-in-alt">&nbsp</i>Login</button>
+        </form>
+    </div>
+</nav>
+<div class="container-main">
+    <div class="wrapper-log">
+        <form action="/register" id="registerForm" method="POST">
+            <div class="form-group">
+                <input class="form-control" id="set_username" name="set_username" type="text" placeholder="Select Username" autocomplete="off" autofocus required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="set_password" name="set_password" type="password" placeholder="Select Password" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="confirm_password" name="confirm_password" type="password" placeholder="Confirm Password" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" id="registerSubmit" onclick="registerFunction()" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        // prevents form from submiting
+        document.getElementById("registerSubmit").addEventListener("click", function(event) {
+            event.preventDefault();
+        });
+
+        // sends request to server with username to check if username exists
+        //    and allows the form to submit if server checks database and doesn't
+        //          find said username
+        registerFunction = () => {
+            let username = (document.getElementById("set_username")).value;
+            let ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    let response = JSON.parse(ajax.responseText);
+                    if (response == true) {
+                        document.getElementById("registerForm").submit();
+                    } else {
+                        alert("Username Not Available")
+                    }
+                }
+            }
+            ajax.open('GET', "/check?username=" + username, true);
+            ajax.send();
+        };
+    });
+</script>
+
+{% endblock %}
